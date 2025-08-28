@@ -92,7 +92,7 @@ The workflow proceeds in stages:
 
 ```bash
 git clone https://github.com/AI-lab-sh/Multi-agent-finance-analysis-by-langgraph
-cd <project-folder>
+cd lang-graph
 ```
 
 2. Create a `.env` file and copy your API key values for all required services (Gemini, Finnhub, NewsAPI, etc.):
