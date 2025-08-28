@@ -1,4 +1,4 @@
-# 🏦 Multi-Agent Financial Intelligence Platform
+# 🏦 Multi-Agent Financial Intelligence Platform (langgraph version)
 
 This project implements a modern multi-agent financial intelligence platform using **LangGraph**, open-source LLMs, and market data tools. It handles natural language investment queries, extracts relevant ticker symbols, gathers market and qualitative data, performs deep analysis, and delivers structured, actionable recommendations.
 
