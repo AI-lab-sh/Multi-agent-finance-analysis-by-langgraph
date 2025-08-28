@@ -91,7 +91,7 @@ The workflow proceeds in stages:
 1. Clone the repository and navigate to the project folder:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/AI-lab-sh/Multi-agent-finance-analysis-by-langgraph
 cd <project-folder>
 ```
 
