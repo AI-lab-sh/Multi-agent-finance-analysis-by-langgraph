@@ -8,8 +8,8 @@ The system integrates crawler scripts, multiple LLM-driven agents, and external 
 
 ## 📊 System Architecture
 
-![System Architecture Diagram](assets/diagram.png)
 
+![System Architecture Diagram](assets/diagram.png)
 
 
 ## 📊 Data Flow
