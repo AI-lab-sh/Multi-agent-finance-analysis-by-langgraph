@@ -6,7 +6,7 @@ The system integrates crawler scripts, multiple LLM-driven agents, and external 
 ## 📊 Data Flow
 The workflow proceeds in stages:
 1. **User Query**  
-   * Can be a **natural language query**, e.g., "invest in renewable energy" or "Apple company".  
+   * Can be a **natural language query**, e.g., "TESLA" or "Apple company".  
    * Can also be a **ticker symbol**, e.g., `AAPL`, `TSLA`.  
    * The query is sent to the **Ticker Inference Agent** to extract the relevant ticker symbol.
 2. **Ticker Inference Agent**  
