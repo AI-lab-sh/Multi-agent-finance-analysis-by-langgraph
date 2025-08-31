@@ -1,6 +1,6 @@
 # 🏦 Multi-Agent Financial Intelligence Platform (langgraph version)
 
-This project implements a modern multi-agent financial intelligence platform using **LangGraph**, open-source LLMs, and market data tools. It handles natural language investment queries, extracts relevant ticker symbols, gathers market and qualitative data, performs deep analysis, and delivers structured, actionable recommendations.
+This project implements a modern multi-agent financial intelligence platform using **LangGraph**, open-source LLMs, and market data tools. It handles natural language investment queries(handling misspels and company names if not correct ticker symbols provided), extracts the most recent ticker symbols using search tools like Tavily, scrapes market and qualitative data from online sources like Yahoo Finance and newes sites, performs deep analysis, and delivers structured, actionable recommendations.
 
 The system integrates crawler scripts, multiple LLM-driven agents, and external APIs to deliver high-quality insights for investors, analysts, and automated trading tools.
 
