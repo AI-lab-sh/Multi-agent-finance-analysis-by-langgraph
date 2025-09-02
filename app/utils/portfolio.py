@@ -83,3 +83,12 @@ def plot_price_history(ticker: str):
     return Image.open(buf)
 
 
+__all__ = [
+    "extract_portfolio_allocations",
+    "plot_portfolio_pie",
+    "extract_portfolio_section",
+    "format_portfolio",
+    "plot_price_history",
+]
+
+

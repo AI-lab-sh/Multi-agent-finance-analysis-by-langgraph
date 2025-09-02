@@ -32,3 +32,6 @@ def start_metrics_server(port: int = 9100) -> None:
     start_http_server(port)
 
 
+__all__ = ["instrument", "start_metrics_server"]
+
+

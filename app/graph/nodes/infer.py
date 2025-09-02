@@ -1,16 +1,15 @@
-from state import StockState, validate_ticker
-from agents import gemini
+from ..state import StockState, validate_ticker
+from ...utils.agents import gemini
 import re
 import yfinance as yf
-from tools import tavily_tool
-from monitoring import instrument
+from ...utils.tools import tavily_tool
+from ...observability.monitoring import instrument
 
 
 @instrument("infer")
 def infer_ticker_node(state: StockState) -> StockState:
     user_input = state.get("user_input", "").strip()
 
-    # If user already typed a valid ticker, keep it
     if user_input.isalpha() and len(user_input) <= 5:
         if validate_ticker(user_input):
             state["ticker"] = user_input.upper()
@@ -31,7 +30,6 @@ Rules:
     response = gemini.invoke(prompt)
     inferred_ticker = response.content.strip().upper()
 
-    # Validate via historical data; if empty, try web search for updated ticker
     try:
         test_data = yf.download(inferred_ticker, period="5d", interval="1d")
     except Exception:

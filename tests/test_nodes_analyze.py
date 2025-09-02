@@ -4,23 +4,22 @@ import importlib
 
 
 def import_analyze_with_fake_llmchain(reply_text: str):
-    # Fake agents.llama not actually used directly, but ensure import safety
+    # Create a fake llama object with invoke method
+    class DummyLlama:
+        def invoke(self, prompt):
+            class DummyResponse:
+                def __init__(self, content):
+                    self.content = content
+            return DummyResponse(reply_text)
+    
     fake_agents = types.ModuleType("agents")
-    setattr(fake_agents, "llama", object())
-    sys.modules["agents"] = fake_agents
+    setattr(fake_agents, "llama", DummyLlama())
+    sys.modules["app.utils.agents"] = fake_agents
 
-    # Patch LLMChain in module namespace after import
-    if "nodes.analyze" in sys.modules:
-        del sys.modules["nodes.analyze"]
-    analyze_mod = importlib.import_module("nodes.analyze")
-
-    class DummyChain:
-        def __init__(self, *args, **kwargs):
-            pass
-        def run(self, **kwargs):
-            return reply_text
-
-    analyze_mod.LLMChain = DummyChain
+    # Fresh import of module under test
+    if "app.graph.nodes.analyze" in sys.modules:
+        del sys.modules["app.graph.nodes.analyze"]
+    analyze_mod = importlib.import_module("app.graph.nodes.analyze")
     return analyze_mod
 
 
