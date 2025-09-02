@@ -14,12 +14,12 @@ def import_infer_with_fakes(gemini_reply: str):
     fake_agents = types.ModuleType("agents")
     setattr(fake_agents, "gemini", types.SimpleNamespace(invoke=lambda _: DummyResponse(gemini_reply)))
     setattr(fake_agents, "llama", object())
-    sys.modules["agents"] = fake_agents
+    sys.modules["app.utils.agents"] = fake_agents
 
     # Fresh import of module under test
-    if "nodes.infer" in sys.modules:
-        del sys.modules["nodes.infer"]
-    return importlib.import_module("nodes.infer")
+    if "app.graph.nodes.infer" in sys.modules:
+        del sys.modules["app.graph.nodes.infer"]
+    return importlib.import_module("app.graph.nodes.infer")
 
 
 def test_infer_ticker_node_happy_path(monkeypatch):
@@ -29,8 +29,8 @@ def test_infer_ticker_node_happy_path(monkeypatch):
     df = pd.DataFrame({"Close": [100.0]})
     monkeypatch.setattr(infer_mod.yf, "download", lambda *a, **k: df, raising=True)
 
-    # Mock validate_ticker → valid
-    monkeypatch.setattr(infer_mod, "validate_ticker", lambda t: t, raising=True)
+    # Mock validate_ticker → valid for AAPL, invalid for others
+    monkeypatch.setattr(infer_mod, "validate_ticker", lambda t: t if t.upper() == "AAPL" else "", raising=True)
 
     state = {"user_input": "Apple"}
     out = infer_mod.infer_ticker_node(state)

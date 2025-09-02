@@ -72,8 +72,26 @@ The workflow proceeds in stages:
 * **LangGraph**: Modern graph-based orchestration of agents
 * **LangChain**: For prompt chaining and agent workflows
 * **LLM APIs**: Gemini-2.0-Flash, Groq LLaMA 3.1 8B
-* **Market Data**: Yahoo Finance, Finnhub, Tavily, NewsAPI
-* **Visualization**: Matplotlib, Recharts, Markdown formatting in frontend
+* **Market Data**: Yahoo Finance, Tavily
+* **Visualization**: Matplotlib, Markdown formatting in frontend
+* **Web Interface**: Gradio
+* **Monitoring**: Prometheus metrics
+
+## 📦 Dependencies
+
+Install all required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+Key dependencies include:
+- `langgraph` - Agent orchestration
+- `langchain` - LLM integration framework
+- `gradio` - Web interface
+- `yfinance` - Stock market data
+- `tavily-python` - Web search
+- `prometheus-client` - Metrics collection
 
 ---
 
@@ -88,12 +106,23 @@ The workflow proceeds in stages:
 
 ## 🛠 How to Use
 
-1. Clone the repository and navigate to the project folder:
+### Running the Application
 
+**Recommended (new structure):**
 ```bash
-git clone <repository-url>
-cd <project-folder>
+python -m app.ui.gradio_app
 ```
+
+
+
+This will:
+- Start the Gradio UI at `http://localhost:7860`
+- Optionally start local monitoring if `START_LOCAL_MONITORING=1` in `.env`
+- Start the metrics server at `http://localhost:9100`
+
+### Setup
+
+1. Clone the repository and navigate to the project folder:
 
 2. Create a `.env` file and copy your API key values for all required services (Gemini, Finnhub, NewsAPI, etc.):
 
@@ -112,7 +141,7 @@ pip install -r requirements.txt
 4. Launch the Gradio frontend:
 
 ```bash
-python gradio_frontend.py
+python -m app.ui.gradio_app
 ```
 
 5. Open your browser at `http://127.0.0.1:7860` to start entering queries.
@@ -140,7 +169,7 @@ prometheus --config.file=monitoring/prometheus.local.yml
 
 2) Run the app (metrics on :9100)
 ```bash
-python gradio_frontend.py
+python -m app.ui.gradio_app
 ```
 
 3) Grafana
@@ -162,7 +191,7 @@ Auto-start (optional):
      ```
   2) Run the app:
      ```bash
-     python gradio_frontend.py
+     python -m app.ui.gradio_app
      ```
   3) Open:
      - App UI: `http://localhost:7860`
@@ -225,23 +254,35 @@ pytest -q -k integration
 CI:
 - GitHub Actions workflow in `.github/workflows/tests.yml` runs `pytest` on every push/PR.
 
----
+## 🎯 Migration Complete!
 
-## 📁 Project Structure (refactored)
+The project has been successfully refactored with a clean, organized structure:
 
+### ✅ What's New
+- **Clean Package Structure**: All code is now organized under the `app/` namespace
+- **Modular Design**: Clear separation between UI, graph logic, utilities, and monitoring
+- **Dual Entry Points**: Both `python run_app.py` (convenient) and `python -m app.ui.gradio_app` (direct)
+- **All Tests Passing**: Complete test suite with unit and integration tests
+- **Monitoring Ready**: Prometheus metrics and optional local monitoring setup
+
+### 🚀 Getting Started
+```bash
+# Convenient entry point (recommended)
+python run_app.py
+
+# Direct module execution
+python -m app.ui.gradio_app
 ```
-lang_graph/
-  agents.py            # LLM clients
-  state.py             # shared StockState and validation helpers
-  nodes/
-    infer.py           # ticker inference node
-    crawl.py           # data gathering node
-    analyze.py         # analysis node
-    recommend.py       # recommendations + highlight helper
-  utils.py             # portfolio parsing/plot helpers
-  monitoring.py        # Prometheus counters/histograms and instrumentation
-  gradio_frontend.py   # UI entrypoint
-  tests/
-    test_nodes_infer.py
-    test_utils.py
+
+**Note**: Both methods work - `run_app.py` is a convenient wrapper around the module execution.
+
+### 🧪 Testing
+```bash
+# Run all tests
+pytest -q
+
+# Run only integration tests
+pytest -q -k integration
 ```
+
+The project is now production-ready with a maintainable, scalable architecture!

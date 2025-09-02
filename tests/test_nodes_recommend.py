@@ -1,4 +1,4 @@
-import nodes.recommend as rec
+import app.graph.nodes.recommend as rec
 
 
 def test_highlight_recommendation_buy():

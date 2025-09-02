@@ -9,10 +9,10 @@ def import_crawl_with_fake_gemini(summary_text: str):
         def __init__(self, content: str):
             self.content = content
     setattr(fake_agents, "gemini", types.SimpleNamespace(invoke=lambda *_: DummyResponse(summary_text)))
-    sys.modules["agents"] = fake_agents
-    if "nodes.crawl" in sys.modules:
-        del sys.modules["nodes.crawl"]
-    return importlib.import_module("nodes.crawl")
+    sys.modules["app.utils.agents"] = fake_agents
+    if "app.graph.nodes.crawl" in sys.modules:
+        del sys.modules["app.graph.nodes.crawl"]
+    return importlib.import_module("app.graph.nodes.crawl")
 
 
 def test_crawl_node_sets_summary():

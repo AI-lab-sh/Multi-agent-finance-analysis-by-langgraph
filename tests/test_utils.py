@@ -1,4 +1,4 @@
-from utils import extract_portfolio_allocations, extract_portfolio_section
+from app.utils.portfolio import extract_portfolio_allocations, extract_portfolio_section
 
 
 def test_extract_portfolio_allocations_parses_ranges_and_single_values():
@@ -18,8 +18,6 @@ def test_extract_portfolio_section_returns_only_section():
     section = extract_portfolio_section(text)
     assert "Suggested Portfolio Allocation" in section
     assert "Footer" not in section
-
-from utils import extract_portfolio_allocations, extract_portfolio_section
 
 
 def test_extract_portfolio_allocations_single_and_range():
