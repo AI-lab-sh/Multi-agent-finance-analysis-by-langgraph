@@ -1,19 +1,11 @@
-# 🏦 Multi-Agent Financial Intelligence Platform
-
-This project implements a modern multi-agent financial intelligence platform using **LangGraph**, open-source LLMs, and market data tools. It handles natural language investment queries, extracts relevant ticker symbols, gathers market and qualitative data, performs deep analysis, and delivers structured, actionable recommendations.
-
+# 🏦 Multi-Agent Financial Intelligence Platform (LangGraph Version)
+This project implements a modern multi-agent financial intelligence platform using **LangGraph**, open-source LLMs, and market data tools. It processes natural language investment queries, handles spelling errors and company names if ticker symbols are incorrect, extracts the most recent ticker symbols using search tools like Tavily, scrapes market and qualitative data from sources such as Yahoo Finance and news sites, performs in-depth analysis, and delivers structured, actionable recommendations, including price charts and portfolio allocation suggestions.  
 The system integrates crawler scripts, multiple LLM-driven agents, and external APIs to deliver high-quality insights for investors, analysts, and automated trading tools.
 
-
-
 ## 📊 System Architecture
-
 ![System Architecture Diagram](assets/diagram.png)
 
-
-
 ## 📊 Data Flow
-
 The workflow proceeds in stages:
 
 1. **User Query**
@@ -58,7 +50,7 @@ The workflow proceeds in stages:
 
 * **Ticker Handling**: Automatically corrects old or misspelled tickers using LLM reasoning + search tools.
 * **Portfolio Awareness**: Extracts portfolio allocation suggestions and visualizes them.
-* **Streaming Output**: Each node’s results are displayed progressively in the frontend.
+* **Streaming Output**: Each node's results are displayed progressively in the frontend.
 * **Integration of Quantitative & Qualitative Data**: Combines financial metrics with market news and insights.
 * **Graph-Oriented Orchestration**: Uses **LangGraph** and **LangChain** to define and manage the workflow between agents efficiently.
 * **Robust Error Handling & Logging**: Detects missing or outdated data.
@@ -112,8 +104,6 @@ Key dependencies include:
 ```bash
 python -m app.ui.gradio_app
 ```
-
-
 
 This will:
 - Start the Gradio UI at `http://localhost:7860`
@@ -200,7 +190,7 @@ Auto-start (optional):
      - Grafana: `http://localhost:3000`
 
 Troubleshooting:
-- If `9090/3000` don’t open automatically, start Prometheus/Grafana manually as shown above.
+- If `9090/3000` don't open automatically, start Prometheus/Grafana manually as shown above.
 - Ensure `.env` is being loaded; we call `load_dotenv()` in `gradio_frontend.py`.
 
 LLM tracing (LangSmith):
@@ -235,7 +225,7 @@ pip install pytest
 pytest -q
 ```
 
-What’s covered:
+What's covered:
 - `tests/test_nodes_infer.py`: unit tests for `nodes/infer.py` with external calls (LLMs, yfinance, Tavily) stubbed via `monkeypatch`.
 - `tests/test_utils.py`: parsing and extraction helpers in `utils.py`.
 - `tests/test_nodes_crawl.py`, `tests/test_nodes_analyze.py`, `tests/test_nodes_recommend.py`: unit tests for other nodes and helpers.
