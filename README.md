@@ -98,11 +98,9 @@ Key dependencies include:
 
 ## 🛠 How to Use
 
-### Running the Application
-
-**Recommended (new structure):**
+### Run the application
 ```bash
-python -m app.ui.gradio_app
+python run_app.py
 ```
 
 This will:
@@ -128,10 +126,10 @@ NEWSAPI_KEY=your_newsapi_key
 pip install -r requirements.txt
 ```
 
-4. Launch the Gradio frontend:
+4. Launch the app:
 
 ```bash
-python -m app.ui.gradio_app
+python run_app.py
 ```
 
 5. Open your browser at `http://127.0.0.1:7860` to start entering queries.
@@ -159,7 +157,7 @@ prometheus --config.file=monitoring/prometheus.local.yml
 
 2) Run the app (metrics on :9100)
 ```bash
-python -m app.ui.gradio_app
+python run_app.py
 ```
 
 3) Grafana
@@ -181,7 +179,7 @@ Auto-start (optional):
      ```
   2) Run the app:
      ```bash
-     python -m app.ui.gradio_app
+     python run_app.py
      ```
   3) Open:
      - App UI: `http://localhost:7860`
@@ -243,28 +241,5 @@ pytest -q -k integration
 
 CI:
 - GitHub Actions workflow in `.github/workflows/tests.yml` runs `pytest` on every push/PR.
-
-
-
-### 🚀 Getting Started
-```bash
-# Convenient entry point (recommended)
-python run_app.py
-
-
-```
-
-
-
-### 🧪 Testing
-```bash
-# Run all tests
-pytest -q
-
-# Run only integration tests
-pytest -q -k integration
-```
-
-
 
 
