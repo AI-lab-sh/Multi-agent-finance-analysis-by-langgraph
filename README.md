@@ -244,27 +244,17 @@ pytest -q -k integration
 CI:
 - GitHub Actions workflow in `.github/workflows/tests.yml` runs `pytest` on every push/PR.
 
-## 🎯 Migration Complete!
 
-The project has been successfully refactored with a clean, organized structure:
-
-### ✅ What's New
-- **Clean Package Structure**: All code is now organized under the `app/` namespace
-- **Modular Design**: Clear separation between UI, graph logic, utilities, and monitoring
-- **Dual Entry Points**: Both `python run_app.py` (convenient) and `python -m app.ui.gradio_app` (direct)
-- **All Tests Passing**: Complete test suite with unit and integration tests
-- **Monitoring Ready**: Prometheus metrics and optional local monitoring setup
 
 ### 🚀 Getting Started
 ```bash
 # Convenient entry point (recommended)
 python run_app.py
 
-# Direct module execution
-python -m app.ui.gradio_app
+
 ```
 
-**Note**: Both methods work - `run_app.py` is a convenient wrapper around the module execution.
+
 
 ### 🧪 Testing
 ```bash
