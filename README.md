@@ -126,12 +126,6 @@ NEWSAPI_KEY=your_newsapi_key
 pip install -r requirements.txt
 ```
 
-4. Launch the app:
-
-```bash
-python run_app.py
-```
-
 5. Open your browser at `http://127.0.0.1:7860` to start entering queries.
 
 ---
@@ -155,10 +149,7 @@ prometheus --config.file=monitoring/prometheus.local.yml
 # UI: http://localhost:9090
 ```
 
-2) Run the app (metrics on :9100)
-```bash
-python run_app.py
-```
+2) Start the app as above (metrics available on :9100)
 
 3) Grafana
 - Start Grafana (e.g., Homebrew on macOS):
@@ -177,10 +168,7 @@ Auto-start (optional):
      ```
      START_LOCAL_MONITORING=1
      ```
-  2) Run the app:
-     ```bash
-     python run_app.py
-     ```
+  2) Run the app (as above)
   3) Open:
      - App UI: `http://localhost:7860`
      - Metrics (raw): `http://localhost:9100/metrics`
