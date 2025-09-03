@@ -105,8 +105,7 @@ python run_app.py
 
 This will:
 - Start the Gradio UI at `http://localhost:7860`
-- Optionally start local monitoring if `START_LOCAL_MONITORING=1` in `.env`
-- Start the metrics server at `http://localhost:9100`
+- Start monitoring automatically (metrics at `http://localhost:9100/metrics`)
 
 ### Setup
 
@@ -120,6 +119,13 @@ FINNHUB_API_KEY=your_finnhub_key
 NEWSAPI_KEY=your_newsapi_key
 ```
 
+Optional monitoring auto-start:
+- To also auto-start local Prometheus and Grafana when running the app, add to `.env`:
+  ```
+  START_LOCAL_MONITORING=1
+  ```
+  If available on your system, Prometheus runs at `http://localhost:9090` and Grafana at `http://localhost:3000`.
+
 3. Install the required Python packages:
 
 ```bash
@@ -132,52 +138,7 @@ pip install -r requirements.txt
 
 ## 📈 Monitoring
 
-Conventional metrics (Prometheus):
-- Metrics server starts at `:9100` when launching Gradio.
-- Exposed metrics:
-  - `node_calls_total{node}`
-  - `node_errors_total{node}`
-  - `node_latency_seconds_bucket{node}` (histogram)
-- Scrape with Prometheus and visualize in Grafana.
-
-Local Prometheus + Grafana (no Docker):
-
-1) Prometheus config
-- Use `monitoring/prometheus.local.yml` as your config:
-```bash
-prometheus --config.file=monitoring/prometheus.local.yml
-# UI: http://localhost:9090
-```
-
-2) Start the app as above (metrics available on :9100)
-
-3) Grafana
-- Start Grafana (e.g., Homebrew on macOS):
-```bash
-brew services start grafana
-# UI: http://localhost:3000  (admin/admin)
-```
-- Add Prometheus datasource pointing to `http://localhost:9090`
-- Optional: import the sample dashboard in `monitoring/grafana.dashboard.json`
-
-Auto-start (optional):
-- The app can try to start Prometheus and Grafana for you when it launches.
-- Requirements: `prometheus` in PATH, and either `brew services` (macOS) or `grafana-server` in PATH.
-- Steps:
-  1) Create a `.env` file in the project root with:
-     ```
-     START_LOCAL_MONITORING=1
-     ```
-  2) Run the app (as above)
-  3) Open:
-     - App UI: `http://localhost:7860`
-     - Metrics (raw): `http://localhost:9100/metrics`
-     - Prometheus: `http://localhost:9090`
-     - Grafana: `http://localhost:3000`
-
-Troubleshooting:
-- If `9090/3000` don't open automatically, start Prometheus/Grafana manually as shown above.
-- Ensure `.env` is being loaded; we call `load_dotenv()` in `gradio_frontend.py`.
+Monitoring starts automatically with `python run_app.py`. Metrics are exposed at `http://localhost:9100/metrics`. To optionally auto-start Prometheus/Grafana, see the Setup notes above.
 
 LLM tracing (LangSmith):
 - Enable deep tracing of prompts/tokens/costs by setting env vars:
