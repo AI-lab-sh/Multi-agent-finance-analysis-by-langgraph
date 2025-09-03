@@ -96,22 +96,15 @@ Key dependencies include:
 
 ---
 
-## 🛠 How to Use
+## 🚀 Getting Started
 
-### Run the application
+1. Install dependencies:
+
 ```bash
-python run_app.py
+pip install -r requirements.txt
 ```
 
-This will:
-- Start the Gradio UI at `http://localhost:7860`
-- Start monitoring automatically (metrics at `http://localhost:9100/metrics`)
-
-### Setup
-
-1. Clone the repository and navigate to the project folder:
-
-2. Create a `.env` file and copy your API key values for all required services (Gemini, Finnhub, NewsAPI, etc.):
+2. Create a `.env` file (keys as needed):
 
 ```text
 GEMINI_API_KEY=your_gemini_key
@@ -119,20 +112,20 @@ FINNHUB_API_KEY=your_finnhub_key
 NEWSAPI_KEY=your_newsapi_key
 ```
 
-Optional monitoring auto-start:
-- To also auto-start local Prometheus and Grafana when running the app, add to `.env`:
-  ```
-  START_LOCAL_MONITORING=1
-  ```
-  If available on your system, Prometheus runs at `http://localhost:9090` and Grafana at `http://localhost:3000`.
-
-3. Install the required Python packages:
+3. Run the app:
 
 ```bash
-pip install -r requirements.txt
+python run_app.py
 ```
 
-5. Open your browser at `http://127.0.0.1:7860` to start entering queries.
+This starts the UI at `http://localhost:7860` and monitoring at `http://localhost:9100/metrics`.
+
+Optional: Auto-start local Prometheus/Grafana by adding to `.env`:
+
+```text
+START_LOCAL_MONITORING=1
+```
+If available on your system, Prometheus runs at `http://localhost:9090` and Grafana at `http://localhost:3000`.
 
 ---
 
