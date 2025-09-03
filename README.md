@@ -87,14 +87,6 @@ Key dependencies include:
 
 ---
 
-## 🔮 Future Enhancements
-
-* Backtesting of recommended portfolios
-* Expanded data sources (Bloomberg, TradingView)
-* Options / derivatives support
-* Interactive dashboards with portfolio simulation and risk modeling
-
----
 
 ## 🚀 Getting Started
 
@@ -185,3 +177,11 @@ CI:
 - GitHub Actions workflow in `.github/workflows/tests.yml` runs `pytest` on every push/PR.
 
 
+## 🔮 Future Enhancements
+
+* Backtesting of recommended portfolios
+* Expanded data sources (Bloomberg, TradingView)
+* Options / derivatives support
+* Interactive dashboards with portfolio simulation and risk modeling
+
+---
